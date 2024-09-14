@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "strict": true,
+    "noImplicitAny": false,
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "plugins": [
+      // Transform paths in output .js files
+      { "transform": "typescript-transform-paths", "useRootDirs": true },
+
+      // Transform paths in output .d.ts files (Include this line if you output declarations files)
+      {
+        "transform": "typescript-transform-paths",
+        "useRootDirs": true,
+        "afterDeclarations": true
+      }
+    ]
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./src/config/*.json",
+    "./src/config/**/*.json",
+    "./test/**/*.test.ts"
+  ],
+  "exclude": ["./node_modules/*"]
+}

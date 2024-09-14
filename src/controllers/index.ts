@@ -57,10 +57,15 @@ const processCSV = async (csvData: string, res: Response) => {
       throw new AppError('Could not insert data', 500);
     }
 
-    return formattedData || [];
+    const data = {
+      jsonData,
+      ageData: formattedData
+    }
+
+    return data || {};
   } catch (error: any) {
     console.error(error, "ERROR IN processCSV");
-    return [];
+    return {};
   }
 };
 
