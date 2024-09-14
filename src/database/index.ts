@@ -27,7 +27,7 @@ export const executeQuery = async (
   try {
     client = await getPgConnection();
     const results = await client.query(query, params); 
-    return results.rows;
+    return results?.rows;
   } catch (error: any) {
     console.error("Error executing query: ", error);
     throw error; 

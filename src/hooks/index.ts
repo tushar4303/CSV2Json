@@ -7,7 +7,7 @@ dotenv.config();
 export const appAuth = (req: any, res: any, next: NextFunction) => {
     const { appsecret } = req?.headers;
     try {
-        if (appsecret !== process.env.APP_SECRET) {
+        if (appsecret !== process?.env?.APP_SECRET) {
             throw new AppError('Unauthorized', 401, { path: req?.url });
         } else {
             return next();

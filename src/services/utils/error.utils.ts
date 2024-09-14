@@ -3,7 +3,6 @@ class AppError extends Error {
     public msg: string,
     public code?: number | null,
     public dataToSend?: any,
-    public severity: SEVERITY = SEVERITY.ERROR
   ) {
     super(msg);
 
@@ -16,11 +15,5 @@ class AppError extends Error {
   }
 }
 
-export enum SEVERITY {
-  ERROR = "error",
-  WARN = "warn",
-  INFO = "info",
-  DEBUG = "debug",
-}
 export { AppError };
 

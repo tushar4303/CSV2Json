@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { executeQuery } from "../database";
 import { appAuth } from "../hooks";
-import { uploadCSV } from "../controllers";
-import { uploadCSVFile } from "../middleware/upload-csv.middleware";
+import { uploadCSVFromFile, uploadCSVFromLocal } from "../controllers";
+import { uploadCSVFile } from "../middleware/upload-csv";
 
 export const appRoutes = [
   {
@@ -30,6 +30,12 @@ export const appRoutes = [
     method: "post",
     path: "/upload-csv",
     preHook: [appAuth, uploadCSVFile],
-    action: uploadCSV
+    action: uploadCSVFromFile
+  },
+  {
+    method: "get",
+    path: "/process-local-csv",
+    preHook: [appAuth],
+    action: uploadCSVFromLocal
   }
 ];
