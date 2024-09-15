@@ -1,27 +1,11 @@
 import { executeQuery } from "../database";
+import { processUsersInBatches, transformUser } from "../helpers/users.helpers";
+import { PassThrough } from 'stream';
 
-export const insertUsers = async (users: any[]) => {
+export const insertUsers = async (users: any[], batchSize: number = 10000, maxParallel: number = 10): Promise<boolean> => {
+  const transformedUsers = users?.map(transformUser); 
   try {
-    const valuePlaceholders = users
-      .map((_, index) => `($${index * 4 + 1}, $${index * 4 + 2}, $${index * 4 + 3}, $${index * 4 + 4})`)
-      .join(", ");
-      
-    const insertQuery = `
-      INSERT INTO public.users (name, age, address, additional_info) 
-      VALUES 
-      ${valuePlaceholders}
-    `;
-
-    const values: any[] = [];
-    users?.forEach((user) => {
-      const { name, age, address, ...otherInfo } = user;
-      const { firstName, lastName } = name;
-      const fullName = `${firstName} ${lastName}`.trim();
-      const addressJson = address ? JSON.stringify(address) : null;
-      const additionalInfoJson = otherInfo ? JSON.stringify(otherInfo) : null;
-      values?.push(fullName, Number(age), addressJson, additionalInfoJson);
-    });
-    await executeQuery(insertQuery, values);
+    await processUsersInBatches(transformedUsers, batchSize, maxParallel);
     return true;
   } catch (error) {
     console.error(error, "ERROR IN insertUsers");

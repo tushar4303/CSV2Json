@@ -1,5 +1,5 @@
 import { NextFunction } from 'express';
-import { sendErrorResponse } from '../services/utils/response-wrapper';
+import { sendErrorResponse } from '../services/utils/response-wrapper.utils';
 import { AppError } from '../services/utils/error.utils';
 import * as dotenv from 'dotenv';
 dotenv.config();
