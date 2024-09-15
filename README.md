@@ -28,6 +28,12 @@ CREATE TABLE public.users (
 );
 ```
 
+## Try using:
+   ```sh
+   curl --location 'https://csv2json-production.up.railway.app/process-local-csv' \
+--header 'appsecret: tushar4303'
+   ```
+
 ## Environment Variables
 
 The following environment variables are used to configure the application:
