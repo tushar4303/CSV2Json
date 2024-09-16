@@ -39,7 +39,13 @@ CREATE TABLE public.users (
 The following environment variables are used to configure the application:
 
 - `PORT`: The port on which the server will run (default is `3001`).
-- `CSV_FILE_PATH`: The path to the CSV file for the `/process-local-csv` endpoint.
+- `PGHOST`: hostname of the PostgreSQL server 
+- `PGDATABASE`: database name 
+- `PGUSER`: psql userName 
+- `PGPASSWORD`
+- `ENDPOINT_ID`: of the db
+- `APP_SECRET`
+- `CSV_FILE_PATH`: The path to the CSV file for the `/process-local-csv` endpoint
 
 ## Installation
 
